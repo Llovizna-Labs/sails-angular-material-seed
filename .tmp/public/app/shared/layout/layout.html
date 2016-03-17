@@ -1,0 +1,22 @@
+<section layout="column" flex ng-cloak id="content" style="overflow:hidden;" ng-cloak>
+	<md-toolbar>
+		<div class="md-toolbar-tools" ng-if="vm.isAuthenticated()">
+			<md-select ng-controller="searchBoxController as vm" placeholder="{{vm.placeholder}}"
+				ng-model="vm.selected"
+				md-on-open="vm.loadAll()"
+				md-on-close="vm.setClinic()"
+				style="min-width: 200px;">
+			     <md-option ng-value="clinic.value" ng-repeat="clinic in vm.clinics">{{clinic.display}}</md-option>
+			 </md-select>
+
+			<span flex></span>
+			<md-button ng-repeat="item in vm.menuItems" ui-sref="{{item.state}}" ng-click="ctrl.announceClick($index)">
+				{{item.name}}
+			</md-button>
+			<md-button  ng-click="vm.logout()">
+				Logout
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-content ui-view="content" flex></md-content>
+</section>

@@ -1,0 +1,3 @@
+<md-select placeholder="{{vm.placeholder}}" ng-model="clinic" md-on-close="vm.setClinic()" md-on-open="vm.loadAll()" style="min-width: 200px;">
+     <md-option ng-value="clinic.value" ng-repeat="clinic in vm.clinics">{{clinic.display}}</md-option>
+ </md-select>

@@ -1,0 +1,59 @@
+<md-card>
+<md-toolbar class="md-table-toolbar md-default" ng-hide="vm.filter">
+  <div class="md-toolbar-tools">
+    <span>{{vm.tableTitle}}</span>
+    <div flex></div>
+    <md-button ng-click="vm.filter = true">Lookup User</md-button>
+    <md-button ng-click="vm.editUser()">Edit User</md-button>
+    <md-button ng-click="vm.addUser()">Create User</md-button>
+
+  </div>
+</md-toolbar>
+<md-toolbar class="md-table-toolbar md-default" ng-show="vm.filter">
+  <div class="md-toolbar-tools">
+    <md-icon class="material-icons">search</md-icon>
+    <form flex="100" name="filter.form">
+      <md-input-container class="md-block">
+      <input type="text" ng-model="vm.query.filter" placeholder="search" flex>
+    </form>
+  </md-input-container>
+    <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.removeFilter()">
+      <md-icon class="material-icons">close</md-icon>
+    <div class="md-ripple-container"></div></button>
+  </div>
+</md-toolbar>
+
+<!-- exact table from live demo -->
+  <md-table-container>
+    <table md-table  md-progress="vm.promise">
+      <thead md-head md-order="vm.query.order" md-on-reorder="onReorder">
+        <tr md-row>
+          <th md-column><span>Email</span></th>
+          <th md-column><span>Name</span></th>
+          <th md-column>Created At</th>
+          <th md-column>Updated At</th>
+          <th md-column>Active</th>
+          <th md-column>Is Admin</th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row ng-repeat="user in vm.data">
+          <td md-cell>{{user.email}}</td>
+          <td md-cell>{{user.name + ' ' + user.lastname}}</td>
+          <td md-cell><span am-time-ago="user.createdAt"></span></td>
+          <td md-cell><span am-time-ago="user.updatedAt"></span></td>
+          <td md-cell>
+          <md-checkbox ng-model="user.activated" ng-click="vm.activate(user)" aria-label="Is active">
+          </md-checkbox>
+        </td>
+        <td md-cell>
+          <md-checkbox ng-model="user.isAdmin" ng-click="vm.setAsAdmin(user)" aria-label="Is admin">
+          </md-checkbox>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+
+  <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.count}}" md-on-paginate="vm.onPaginate" md-page-select></md-table-pagination>
+</md-card>

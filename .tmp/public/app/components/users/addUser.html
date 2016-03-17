@@ -1,0 +1,46 @@
+<md-dialog aria-label="User Form"  flex="50" ng-cloak>
+<form name="resetForm" ng-submit="ctrl.addUser()">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>User Form</h2>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <md-input-container >
+        <label>Name</label>
+        <input ng-model="ctrl.user.name" type="text">
+      </md-input-container>
+      <md-input-container >
+        <label>Lastname</label>
+        <input ng-model="ctrl.user.lastname" type="text">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input ng-model="ctrl.user.email" type="email" required>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input ng-model="ctrl.user.password" type="password">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Confirm password</label>
+        <input ng-model="ctrl.user.confirmPassword" type="password">
+      </md-input-container>
+      <md-checkbox ng-model="ctrl.user.isAdmin" aria-label="is Admin">
+          Is Admin
+        </md-checkbox>
+        <md-checkbox ng-model="ctrl.user.activated" aria-label="is Admin">
+            Activated
+          </md-checkbox>
+    </div>
+  </md-dialog-content>
+
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button type="submit" style="margin-right:20px;">
+      Add User
+    </md-button>
+  </md-dialog-actions>
+</form>
+</md-dialog>
